@@ -1,0 +1,5 @@
+package com.book.service.schedule;
+
+public class ScheduleService {
+
+}

@@ -1,0 +1,142 @@
+package com.book.response;
+
+import java.util.Date;
+
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
+public class ScheduleResponse implements java.io.Serializable {
+
+	/**
+	* 
+	*/
+	private static final long serialVersionUID = -2717449977011679949L;
+
+	public ScheduleResponse() {
+
+	}
+	
+	private Long scheduleId;
+
+	private Date gameDate;
+
+	private Date gameTime;
+
+	private TeamResponse homeTeam;
+
+	private TeamResponse awayTeam;
+
+	private TeamResponse winningTeam;
+
+	private TeamResponse lossingTeam;
+
+	@XmlAttribute
+	public Long getScheduleId() {
+		return scheduleId;
+	}
+
+	public void setScheduleId(Long scheduleId) {
+		this.scheduleId = scheduleId;
+	}
+	@XmlElement
+	public Date getGameDate() {
+		return gameDate;
+	}
+
+	public void setGameDate(Date gameDate) {
+		this.gameDate = gameDate;
+	}
+	@XmlElement
+	public Date getGameTime() {
+		return gameTime;
+	}
+
+	public void setGameTime(Date gameTime) {
+		this.gameTime = gameTime;
+	}
+	@XmlElement
+	public TeamResponse getHomeTeam() {
+		return homeTeam;
+	}
+
+	public void setHomeTeam(TeamResponse homeTeam) {
+		this.homeTeam = homeTeam;
+	}
+	@XmlElement
+	public TeamResponse getAwayTeam() {
+		return awayTeam;
+	}
+
+	public void setAwayTeam(TeamResponse awayTeam) {
+		this.awayTeam = awayTeam;
+	}
+	@XmlElement
+	public TeamResponse getWinningTeam() {
+		return winningTeam;
+	}
+
+	public void setWinningTeam(TeamResponse winningTeam) {
+		this.winningTeam = winningTeam;
+	}
+	@XmlElement
+	public TeamResponse getLossingTeam() {
+		return lossingTeam;
+	}
+
+	public void setLossingTeam(TeamResponse lossingTeam) {
+		this.lossingTeam = lossingTeam;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((awayTeam == null) ? 0 : awayTeam.hashCode());
+		result = prime * result + ((gameDate == null) ? 0 : gameDate.hashCode());
+		result = prime * result + ((gameTime == null) ? 0 : gameTime.hashCode());
+		result = prime * result + ((homeTeam == null) ? 0 : homeTeam.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ScheduleResponse other = (ScheduleResponse) obj;
+		if (awayTeam == null) {
+			if (other.awayTeam != null)
+				return false;
+		} else if (!awayTeam.equals(other.awayTeam))
+			return false;
+		if (gameDate == null) {
+			if (other.gameDate != null)
+				return false;
+		} else if (!gameDate.equals(other.gameDate))
+			return false;
+		if (gameTime == null) {
+			if (other.gameTime != null)
+				return false;
+		} else if (!gameTime.equals(other.gameTime))
+			return false;
+		if (homeTeam == null) {
+			if (other.homeTeam != null)
+				return false;
+		} else if (!homeTeam.equals(other.homeTeam))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Schedule [scheduleId=" + scheduleId + ", gameDate=" + gameDate + ", gameTime=" + gameTime
+				+ ", homeTeam=" + homeTeam + ", awayTeam=" + awayTeam + ", winningTeam=" + winningTeam
+				+ ", lossingTeam=" + lossingTeam + "]";
+	}
+
+}

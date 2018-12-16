@@ -1,0 +1,20 @@
+package com.ejb.dao;
+
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+
+/**
+ * Session Bean implementation class TeamDAO
+ */
+@Stateless(mappedName = "TeamDAO")
+@LocalBean
+public class TeamDAO implements TeamDAOLocal {
+
+    /**
+     * Default constructor. 
+     */
+    public TeamDAO() {
+        // TODO Auto-generated constructor stub
+    }
+
+}

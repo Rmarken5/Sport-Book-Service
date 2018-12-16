@@ -1,0 +1,15 @@
+package com.ejb.persistence;
+
+import java.util.List;
+import java.util.Map;
+
+import javax.ejb.Local;
+
+@Local
+public interface PersistenceServiceLocal {
+
+	public <T, E> T find(Class<T> clazz, E e);
+	
+	
+	public <V, E> List<E> findByQuery(String query, Map<String,V> parameters);
+}

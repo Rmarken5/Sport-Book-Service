@@ -1,0 +1,10 @@
+package com.ejb.persistence;
+
+import javax.ejb.Local;
+
+@Local
+public interface PersistenceServiceLocal {
+
+	public <T> Object find(Class<?> clazz, T t);
+	
+}

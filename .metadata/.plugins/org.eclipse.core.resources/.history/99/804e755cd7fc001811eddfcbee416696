@@ -1,0 +1,20 @@
+package com.ejb.test;
+
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+
+/**
+ * Session Bean implementation class TestBean
+ */
+@Stateless(name = "TestBeanImpl")
+@LocalBean
+public class TestBean implements TestBeanLocal {
+
+    /**
+     * Default constructor. 
+     */
+    public TestBean() {
+        // TODO Auto-generated constructor stub
+    }
+
+}

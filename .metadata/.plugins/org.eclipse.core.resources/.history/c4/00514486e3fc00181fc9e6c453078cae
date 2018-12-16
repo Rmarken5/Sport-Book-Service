@@ -1,0 +1,45 @@
+/**
+ * 
+ */
+package com.book.service;
+
+import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+
+import com.book.response.TeamResponse;
+import com.ejb.test.TestBeanLocal;
+import com.entity.Team;
+
+/**
+ * @author pegasus
+ *
+ */
+@RequestScoped
+@Path("/hello")
+@Produces({ "application/json", "text/plain"})
+@Consumes({ "application/xml", "application/json" })
+public class Hello {
+
+	@EJB(beanName = "TestBeanImpl")
+	private TestBeanLocal testBean;
+	
+	@GET
+	@Path("/helloworld")
+	@Produces({"application/json"})
+	public TeamResponse sayHello() {
+		Team team = testBean.getTeam();
+		
+		TeamResponse tr = new TeamResponse();
+		tr.setId(team.getId());
+		tr.setScheduleName(team.getTeamName());
+		
+		
+		return tr;
+	}
+	
+	
+}

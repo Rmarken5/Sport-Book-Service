@@ -1,0 +1,30 @@
+package com.ejb.test;
+
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+
+import com.entity.Team;
+
+/**
+ * Session Bean implementation class TestBean
+ */
+@Stateless(name = "TestBeanImpl")
+@LocalBean
+public class TestBean implements TestBeanLocal {
+
+   
+    public TestBean() {
+
+    }
+    
+    @Override
+    public Team getTeam() {
+    	Team team = new Team();
+    	
+    	team.setId(1L);
+    	team.setTeamName("Team !");
+    	
+    	return team;
+    }
+
+}
