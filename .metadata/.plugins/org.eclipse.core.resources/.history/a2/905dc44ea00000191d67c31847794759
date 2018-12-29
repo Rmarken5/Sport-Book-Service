@@ -1,5 +1,0 @@
-package com.book.exception.custom;
-
-public class ParameterNotFoundException extends RuntimeException {
-
-}

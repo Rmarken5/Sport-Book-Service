@@ -37,11 +37,9 @@ public class ScheduleResponse implements java.io.Serializable {
 	private TeamResponse losingTeam;
 
 	private Integer homeTeamScore;
-	
+
 	private Integer awayTeamScore;
-	
-	
-	
+
 	@XmlAttribute
 	public Long getScheduleId() {
 		return scheduleId;
@@ -104,6 +102,7 @@ public class ScheduleResponse implements java.io.Serializable {
 	public void setLosingTeam(TeamResponse losingTeam) {
 		this.losingTeam = losingTeam;
 	}
+
 	@XmlElement
 	public Integer getHomeTeamScore() {
 		return homeTeamScore;
@@ -112,6 +111,7 @@ public class ScheduleResponse implements java.io.Serializable {
 	public void setHomeTeamScore(Integer homeTeamScore) {
 		this.homeTeamScore = homeTeamScore;
 	}
+
 	@XmlElement
 	public Integer getAwayTeamScore() {
 		return awayTeamScore;
@@ -125,10 +125,14 @@ public class ScheduleResponse implements java.io.Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((awayTeam == null) ? 0 : awayTeam.hashCode());
-		result = prime * result + ((gameDate == null) ? 0 : gameDate.hashCode());
-		result = prime * result + ((gameTime == null) ? 0 : gameTime.hashCode());
-		result = prime * result + ((homeTeam == null) ? 0 : homeTeam.hashCode());
+		result = prime * result
+				+ ((awayTeam == null) ? 0 : awayTeam.hashCode());
+		result = prime * result
+				+ ((gameDate == null) ? 0 : gameDate.hashCode());
+		result = prime * result
+				+ ((gameTime == null) ? 0 : gameTime.hashCode());
+		result = prime * result
+				+ ((homeTeam == null) ? 0 : homeTeam.hashCode());
 		return result;
 	}
 
@@ -166,8 +170,9 @@ public class ScheduleResponse implements java.io.Serializable {
 
 	@Override
 	public String toString() {
-		return "Schedule [scheduleId=" + scheduleId + ", gameDate=" + gameDate + ", gameTime=" + gameTime
-				+ ", homeTeam=" + homeTeam + ", awayTeam=" + awayTeam + ", winningTeam=" + winningTeam
+		return "Schedule [scheduleId=" + scheduleId + ", gameDate=" + gameDate
+				+ ", gameTime=" + gameTime + ", homeTeam=" + homeTeam
+				+ ", awayTeam=" + awayTeam + ", winningTeam=" + winningTeam
 				+ ", losingTeam=" + losingTeam + "]";
 	}
 
@@ -186,14 +191,14 @@ public class ScheduleResponse implements java.io.Serializable {
 		private TeamResponse winningTeam;
 
 		private TeamResponse losingTeam;
-		
+
 		private Integer homeTeamScore;
-		
+
 		private Integer awayTeamScore;
 
-		
-		public ScheduleResponseBuilder(Long scheduleId, Date gameDate, Date gameTime, TeamResponse homeTeam,
-				TeamResponse awayTeam, TeamResponse winningTeam, TeamResponse losingTeam,
+		public ScheduleResponseBuilder(Long scheduleId, Date gameDate,
+				Date gameTime, TeamResponse homeTeam, TeamResponse awayTeam,
+				TeamResponse winningTeam, TeamResponse losingTeam,
 				Integer homeTeamScore, Integer awayTeamScore) {
 			super();
 			this.scheduleId = scheduleId;
@@ -205,8 +210,9 @@ public class ScheduleResponse implements java.io.Serializable {
 			this.losingTeam = losingTeam;
 			this.homeTeamScore = homeTeamScore;
 			this.awayTeamScore = awayTeamScore;
-			
+
 		}
+
 		public ScheduleResponseBuilder() {
 
 		}
@@ -215,52 +221,67 @@ public class ScheduleResponse implements java.io.Serializable {
 			this.scheduleId = scheduleId;
 			return this;
 		}
-		
+
 		public ScheduleResponseBuilder setGameDate(Date gameDate) {
 			this.gameDate = gameDate;
 			return this;
 		}
-		
+
 		public ScheduleResponseBuilder setGameTime(Date gameTime) {
 			this.gameTime = gameTime;
 			return this;
 		}
-		
+
 		public ScheduleResponseBuilder setHomeTeam(TeamResponse homeTeam) {
 			this.homeTeam = homeTeam;
 			return this;
 		}
-		
+
 		public ScheduleResponseBuilder setAwayTeam(TeamResponse awayTeam) {
 			this.awayTeam = awayTeam;
 			return this;
 		}
+
 		public ScheduleResponseBuilder setHomeTeam(Team homeTeam) {
-			this.homeTeam = new TeamResponse.TeamResponseBuilder().setTeam(homeTeam).build();
+			if (homeTeam != null) {
+				this.homeTeam = new TeamResponse.TeamResponseBuilder()
+						.setTeam(homeTeam).build();
+			}
 			return this;
 		}
-		
+
 		public ScheduleResponseBuilder setAwayTeam(Team awayTeam) {
-			this.awayTeam = new TeamResponse.TeamResponseBuilder().setTeam(awayTeam).build();
+			if (awayTeam != null) {
+				this.awayTeam = new TeamResponse.TeamResponseBuilder()
+						.setTeam(awayTeam).build();
+			}
 			return this;
 		}
-		
-		public ScheduleResponseBuilder setWinningTeam(TeamResponse winningTeam) {
+
+		public ScheduleResponseBuilder setWinningTeam(
+				TeamResponse winningTeam) {
 			this.winningTeam = winningTeam;
 			return this;
 		}
-		
+
 		public ScheduleResponseBuilder setLosingTeam(TeamResponse losingTeam) {
 			this.losingTeam = losingTeam;
 			return this;
 		}
+
 		public ScheduleResponseBuilder setWinningTeam(Team winningTeam) {
-			this.winningTeam = new TeamResponse.TeamResponseBuilder().setTeam(winningTeam).build();
+			if (winningTeam != null) {
+				this.winningTeam = new TeamResponse.TeamResponseBuilder()
+						.setTeam(winningTeam).build();
+			}
 			return this;
 		}
-		
+
 		public ScheduleResponseBuilder setLosingTeam(Team losingTeam) {
-			this.losingTeam = new TeamResponse.TeamResponseBuilder().setTeam(losingTeam).build();
+			if (losingTeam != null) {
+				this.losingTeam = new TeamResponse.TeamResponseBuilder()
+						.setTeam(losingTeam).build();
+			}
 			return this;
 		}
 
@@ -268,14 +289,14 @@ public class ScheduleResponse implements java.io.Serializable {
 			this.homeTeamScore = homeTeamScore;
 			return this;
 		}
-		
+
 		public ScheduleResponseBuilder setAwayTeamScore(Integer awayTeamScore) {
 			this.awayTeamScore = awayTeamScore;
 			return this;
 		}
-		
+
 		public ScheduleResponse buildFromSchedule(Schedule schedule) {
-			
+
 			setScheduleId(schedule.getScheduleId());
 			setAwayTeam(schedule.getAwayTeam());
 			setHomeTeam(schedule.getHomeTeam());
@@ -285,10 +306,10 @@ public class ScheduleResponse implements java.io.Serializable {
 			setLosingTeam(schedule.getLossingTeam());
 			setHomeTeamScore(schedule.getHomeTeamScore());
 			setAwayTeamScore(schedule.getAwayTeamScore());
-			
+
 			return build();
 		}
-		
+
 		public ScheduleResponse build() {
 			ScheduleResponse scheduleResponse = new ScheduleResponse();
 			scheduleResponse.scheduleId = this.scheduleId;

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<jboss-deployment-structure xmlns="urn:jboss:deployment-structure:1.1">
+    <deployment>
+        <dependencies>
+            <module name="org.apache.logging.log4j" />
+            <module name="org.apache.commons.lang3" />
+        </dependencies>
+    </deployment>
+</jboss-deployment-structure> 

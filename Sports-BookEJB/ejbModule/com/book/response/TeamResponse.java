@@ -9,19 +9,19 @@ import com.entity.Team;
 @XmlRootElement
 public class TeamResponse {
 
-	private long id;
+	private Long id;
 
 	private String spreadName;
 
 	private String scheduleName;
 
-	private long wins;
+	private Long wins;
 
-	private long losses;
+	private Long losses;
 
-	private long againstTheSpreadWins;
+	private Long againstTheSpreadWins;
 
-	private long againstTheSpreadLosses;
+	private Long againstTheSpreadLosses;
 
 	@Override
 	public int hashCode() {
@@ -71,7 +71,7 @@ public class TeamResponse {
 
 	
 	@XmlAttribute
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -95,7 +95,7 @@ public class TeamResponse {
 		this.scheduleName = scheduleName;
 	}
 	@XmlElement
-	public long getWins() {
+	public Long getWins() {
 		return wins;
 	}
 
@@ -103,7 +103,7 @@ public class TeamResponse {
 		this.wins = wins;
 	}
 	@XmlElement
-	public long getLosses() {
+	public Long getLosses() {
 		return losses;
 	}
 
@@ -111,7 +111,7 @@ public class TeamResponse {
 		this.losses = losses;
 	}
 	@XmlElement
-	public long getAgainstTheSpreadWins() {
+	public Long getAgainstTheSpreadWins() {
 		return againstTheSpreadWins;
 	}
 
@@ -119,7 +119,7 @@ public class TeamResponse {
 		this.againstTheSpreadWins = againstTheSpreadWins;
 	}
 	@XmlElement
-	public long getAgainstTheSpreadLosses() {
+	public Long getAgainstTheSpreadLosses() {
 		return againstTheSpreadLosses;
 	}
 
@@ -129,19 +129,19 @@ public class TeamResponse {
 	
 	public static class TeamResponseBuilder{
 		
-		private long id;
+		private Long id;
 
 		private String spreadName;
 
 		private String scheduleName;
 
-		private long wins;
+		private Long wins;
 
-		private long losses;
+		private Long losses;
 
-		private long againstTheSpreadWins;
+		private Long againstTheSpreadWins;
 
-		private long againstTheSpreadLosses;
+		private Long againstTheSpreadLosses;
 
 		public TeamResponseBuilder(long id, String spreadName, String scheduleName, long wins, long losses,
 				long againstTheSpreadWins, long againstTheSpreadLosses) {

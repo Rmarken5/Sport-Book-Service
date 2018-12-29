@@ -1,7 +1,0 @@
-INDEX VERSION 1.4+/home/pegasus/programming/java/jaxb-tutorial/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
-837843111.index
-3574010132.index
-81352376.index
-1915942926.index
-1182381854.index
-1304508410.index

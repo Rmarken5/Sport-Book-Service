@@ -10,6 +10,7 @@ import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
 import com.book.exception.custom.ParameterNotFoundException;
@@ -50,7 +51,7 @@ public class ScheduleDAO implements ScheduleDAOLocal {
 			log.error(e);
 			throw e;
 		}
-		log.debug(schedule.toString());
+		log.debug(schedule == null ? "schedule is null" : schedule.toString());
 
 		return new ScheduleResponse.ScheduleResponseBuilder()
 				.buildFromSchedule(schedule);
@@ -81,6 +82,7 @@ public class ScheduleDAO implements ScheduleDAOLocal {
 		List<ScheduleResponse> scheduleResponseList = new ArrayList<ScheduleResponse>();
 		Map<String, Object> parameters = new HashMap<String, Object>();
 
+		
 		if (time == null) {
 			throw new ParameterNotFoundException(
 					"findScheduleByTime: time cannot be null");
@@ -89,7 +91,7 @@ public class ScheduleDAO implements ScheduleDAOLocal {
 
 		addAllEntitiesToCollection(scheduleResponseList,
 				persistenceService.findByQuery(
-						"Schedule.findSchedule.findScheduleByGameTime",
+						"Schedule.findScheduleByGameTime",
 						parameters));
 		return scheduleResponseList;
 	}
@@ -112,7 +114,7 @@ public class ScheduleDAO implements ScheduleDAOLocal {
 		parameters.put("gameDate", date);
 
 		addAllEntitiesToCollection(scheduleResponseList, persistenceService
-				.findByQuery("Schedule.findScheduleByGameTime", parameters));
+				.findByQuery("Schedule.findScheduleByDateAndTime", parameters));
 		return scheduleResponseList;
 	}
 
@@ -122,12 +124,22 @@ public class ScheduleDAO implements ScheduleDAOLocal {
 		List<ScheduleResponse> scheduleResponseList = new ArrayList<ScheduleResponse>();
 		Map<String, Object> parameters = new HashMap<String, Object>();
 
+		
+		if(StringUtils.isNotBlank("Hello")) {
+			log.debug("Hello");
+		}
+		
 		if (homeTeam == null) {
 			log.error("findScheduleByHomeTeam: homeTeam cannot be null.");
 			throw new ParameterNotFoundException(
 					"findScheduleByHomeTeam: homeTeam cannot be null.");
 		}
-		parameters.put("homeTeam", homeTeam);
+		if (homeTeam.getId() == null) {
+			log.error("findScheduleByHomeTeam: homeTeam id cannot be null.");
+			throw new ParameterNotFoundException(
+					"findScheduleByHomeTeam: homeTeam id cannot be null.");
+		}
+		parameters.put("homeTeamId", homeTeam.getId());
 
 		addAllEntitiesToCollection(scheduleResponseList, persistenceService
 				.findByQuery("Schedule.findScheduleByHomeTeam", parameters));
@@ -145,7 +157,12 @@ public class ScheduleDAO implements ScheduleDAOLocal {
 			throw new ParameterNotFoundException(
 					"findScheduleByAwayTeam: awayTeam cannot be null.");
 		}
-		parameters.put("awayTeam", awayTeam);
+		if (awayTeam.getId() == null) {
+			log.error("findScheduleByAwayTeam: awayTeam id cannot be null.");
+			throw new ParameterNotFoundException(
+					"findScheduleByAwayTeam: awayTeam id cannot be null.");
+		}
+		parameters.put("awayTeamId", awayTeam.getId());
 
 		addAllEntitiesToCollection(scheduleResponseList, persistenceService
 				.findByQuery("Schedule.findScheduleByAwayTeam", parameters));
