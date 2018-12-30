@@ -36,6 +36,9 @@ public class Team {
 	@Column(name = "ATS_LOSSES")
 	private Long againstTheSpreadLosses;
 	
+	public enum SORT_ORDER{
+		SPREAD_NAME, SCHEDULE_NAME, WINS,LOSSES,ATS_WINS,ATS_LOSSES
+	}
 
 	public Long getId() {
 		return id;

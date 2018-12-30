@@ -31,10 +31,10 @@ import javax.persistence.TemporalType;
 		@NamedQuery(name = "Schedule.findScheduleByAwayTeam",
 		query = "SELECT s FROM Schedule s WHERE s.awayTeam.id = :awayTeamId"),
 		@NamedQuery(name = "Schedule.findScheduleByMatchup",
-		query = "SELECT s FROM Schedule s WHERE (s.homeTeam.id = :teamOne"
-				+ " AND s.awayTeam.id = :teamTwo)"
-				+ " OR ( s.homeTeam.id = :teamTwo"  
-				+ " AND s.awayTeam.id = :teamOne)")
+		query = "SELECT s FROM Schedule s WHERE (s.homeTeam.id = :teamOneId"
+				+ " AND s.awayTeam.id = :teamTwoId)"
+				+ " OR ( s.homeTeam.id = :teamTwoId"  
+				+ " AND s.awayTeam.id = :teamOneId)")
 })
 public class Schedule implements java.io.Serializable {
 

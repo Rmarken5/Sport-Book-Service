@@ -176,19 +176,21 @@ public class ScheduleDAO implements ScheduleDAOLocal {
 		List<ScheduleResponse> scheduleResponseList = new ArrayList<ScheduleResponse>();
 		Map<String, Object> parameters = new HashMap<String, Object>();
 
-		if (teamOne == null) {
-			log.error("findScheduleByMatchUp: teamOne cannot be null.");
+		if (teamOne == null || teamOne.getId() == null) {
+			log.error("findScheduleByMatchUp: teamOne object or id cannot be null.");
 			throw new ParameterNotFoundException(
-					"findScheduleByMatchUp: teamOne cannot be null.");
+					"findScheduleByMatchUp: teamOne object or id cannot be null.");
 		}
-		if (teamTwo == null) {
-			log.error("findScheduleByMatchUp: teamTwo cannot be null.");
+		if (teamTwo == null || teamTwo.getId() == null) {
+			log.error("findScheduleByMatchUp: teamTwo object or id cannot be null.");
 			throw new ParameterNotFoundException(
-					"findScheduleByMatchUp: teamTwo cannot be null.");
+					"findScheduleByMatchUp: teamTwo object or id cannot be null.");
 		}
 
-		parameters.put("teamOne", teamOne);
-		parameters.put("teamTwo", teamTwo);
+		
+		
+		parameters.put("teamOneId", teamOne.getId());
+		parameters.put("teamTwoId", teamTwo.getId());
 
 		addAllEntitiesToCollection(scheduleResponseList, persistenceService
 				.findByQuery("Schedule.findScheduleByMatchup", parameters));

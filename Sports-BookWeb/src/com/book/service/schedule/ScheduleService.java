@@ -206,10 +206,65 @@ public class ScheduleService {
 		return Response.ok(responseList).build();
 	}
 
-	/*
-	 * public List<ScheduleResponse> findScheduleByMatchUp(Team teamOne, Team
-	 * teamTwo);
-	 */
+	
+	@GET
+	@Path("/matchup")
+	  public Response findScheduleByMatchUp(@QueryParam("teamOneId")String teamOneId, @QueryParam("teamTwoId")String
+	  teamTwoId) {
+		
+		List<ScheduleResponse> resultList = null;
+		ScheduleResponseList responseList = null;
+
+		try {
+
+			if (StringUtils.isBlank(teamOneId)) {
+				logger.error("home id is null or blank.");
+				return Response
+						.status(Response.Status.BAD_REQUEST.getStatusCode(),
+								"teamOneId null or blank.")
+						.build();
+			}
+			if (!StringUtils.isNumeric(teamOneId)) {
+				logger.error("home id is not a number.");
+				return Response
+						.status(Response.Status.BAD_REQUEST.getStatusCode(),
+								"teamTwoId is not a number.")
+						.build();
+			}
+			
+			if (StringUtils.isBlank(teamTwoId)) {
+				logger.error("home id is null or blank.");
+				return Response
+						.status(Response.Status.BAD_REQUEST.getStatusCode(),
+								"teamOneId null or blank.")
+						.build();
+			}
+			if (!StringUtils.isNumeric(teamTwoId)) {
+				logger.error("home id is not a number.");
+				return Response
+						.status(Response.Status.BAD_REQUEST.getStatusCode(),
+								"teamTwoId is not a number.")
+						.build();
+			}
+
+			
+			Team teamOne = new Team();
+			Team teamTwo = new Team();
+			
+			teamOne.setId(Long.parseLong(teamOneId));
+			teamTwo.setId(Long.parseLong(teamTwoId));
+			responseList = new ScheduleResponseList();
+			resultList = scheduleDAO.findScheduleByMatchUp(teamOne, teamTwo);
+			responseList.setList(resultList);
+		} catch (Exception e) {
+			return Response.status(
+					Response.Status.INTERNAL_SERVER_ERROR.getStatusCode(),
+					e.getMessage()).build();
+		}
+		return Response.ok(responseList).build();
+		
+	}
+	 
 
 	private Date parseToDateObj(String date) throws ParseException {
 		final String format = "yyyy-MM-dd";
