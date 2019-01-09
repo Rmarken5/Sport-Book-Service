@@ -54,6 +54,24 @@ public class PersistenceService implements PersistenceServiceLocal {
 	}
 	
 	@Override
+	public <T,V> T findSingleByQuery(String queryName, Map<String, V> parameters) {
+		T result = null;
+		Query query = em.createNamedQuery(queryName);
+		
+		if(!parameters.isEmpty()) {
+			for(String key : parameters.keySet()) {
+				query.setParameter(key, parameters.get(key));
+			}
+		}
+		result = (T) query.getSingleResult();
+		
+		
+		return result;
+		
+		
+	}
+	
+	@Override
 	public <V, E> List<E> findByCustomQuery(String customQuery, Map<String, V> parameters) {
 		List<E> results = null;
 		Query query = em.createQuery(customQuery);

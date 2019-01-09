@@ -7,15 +7,30 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "PICK")
+@NamedQueries({
+	@NamedQuery(name = "Pick.findByGameDate", query = "SELECT p FROM Pick p WHERE p.gameDate = :gameDate ORDER BY p.gameTime ASC"),
+	@NamedQuery(name = "Pick.findByGameTime", query = "SELECT p FROM Pick p WHERE p.gameTime = :gameTime ORDER BY p.gameDate ASC"),
+	@NamedQuery(name = "Pick.findByHomeTeam", query = "SELECT p FROM Pick p WHERE p.homeTeam.id = :homeTeamId"),
+	@NamedQuery(name = "Pick.findByAwayTeam", query = "SELECT p FROM Pick p WHERE p.awayTeam.id = :awayTeamId"),
+	@NamedQuery(name = "Pick.findByFavoriteTeam", query = "SELECT p FROM Pick p WHERE p.favoriteTeam.id = :favoriteTeamId" ),
+	@NamedQuery(name = "Pick.findPickByGame", query = "SELECT p FROM Pick p WHERE "
+			+ "p.gameDate = :gameDate "
+			+ "AND p.homeTeam.id = :homeTeamId "
+			+ "AND p.awayTeam.id = :awayTeamId" )
+	
+})
 public class Pick {
 
 	@Id
+	@Column(name = "PICK_ID")
 	private long id;
 	
 	@Temporal(TemporalType.DATE)

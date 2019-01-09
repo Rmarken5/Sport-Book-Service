@@ -17,4 +17,6 @@ public interface PersistenceServiceLocal {
 	public <T,V> T  findSingleByCustomQuery(String customQuery, Map<String, V> parameters);
 	
 	public <V, E> List<E> findByCustomQuery(String customQuery, Map<String, V> parameters);
+
+	public <T,V> T findSingleByQuery(String queryName, Map<String, V> parameters);
 }

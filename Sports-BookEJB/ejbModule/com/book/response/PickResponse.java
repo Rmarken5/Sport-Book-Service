@@ -6,24 +6,46 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.apache.log4j.Logger;
+
+import com.entity.Pick;
+import com.entity.Team;
+
 @XmlRootElement
 public class PickResponse {
 
 	private long id;
-	
+
 	private Date gameDate;
-	
+
 	private Date gameTime;
-	
+
 	private TeamResponse awayTeam;
-	
+
 	private TeamResponse homeTeam;
-	
+
 	private double spread;
-	
+
 	private TeamResponse favorite;
-	
+
 	private Boolean pickedCorrectly;
+
+	public PickResponse() {
+
+	}
+
+	public PickResponse(long id, Date gameDate, Date gameTime, TeamResponse awayTeam, TeamResponse homeTeam,
+			double spread, TeamResponse favorite, Boolean pickedCorrectly) {
+		super();
+		this.id = id;
+		this.gameDate = gameDate;
+		this.gameTime = gameTime;
+		this.awayTeam = awayTeam;
+		this.homeTeam = homeTeam;
+		this.spread = spread;
+		this.favorite = favorite;
+		this.pickedCorrectly = pickedCorrectly;
+	}
 
 	@XmlAttribute
 	public long getId() {
@@ -42,7 +64,7 @@ public class PickResponse {
 	public void setGameDate(Date gameDate) {
 		this.gameDate = gameDate;
 	}
-	
+
 	@XmlElement
 	public Date getGameTime() {
 		return gameTime;
@@ -60,7 +82,7 @@ public class PickResponse {
 	public void setAwayTeam(TeamResponse awayTeam) {
 		this.awayTeam = awayTeam;
 	}
-	
+
 	@XmlElement
 	public TeamResponse getHomeTeam() {
 		return homeTeam;
@@ -69,7 +91,7 @@ public class PickResponse {
 	public void setHomeTeam(TeamResponse homeTeam) {
 		this.homeTeam = homeTeam;
 	}
-	
+
 	@XmlElement
 	public double getSpread() {
 		return spread;
@@ -159,7 +181,109 @@ public class PickResponse {
 			return false;
 		return true;
 	}
-	
-	
-	
+
+	public static class PickResponseBuilder {
+
+		private static Logger log = Logger.getLogger(PickResponseBuilder.class);
+		
+		private long id;
+
+		private Date gameDate;
+
+		private Date gameTime;
+
+		private TeamResponse awayTeam;
+
+		private TeamResponse homeTeam;
+
+		private float spread;
+
+		private TeamResponse favorite;
+
+		private Boolean pickedCorrectly;
+		
+		public PickResponseBuilder(Pick pick) {
+			if (pick != null) {
+				setId(pick.getId());
+				setGameDate(pick.getGameDate());
+				setGameTime(pick.getGameTime());
+				setAwayTeam(pick.getAwayTeam());
+				setHomeTeam(pick.getHomeTeam());
+				setFavorite(pick.getFavoriteTeam());
+				setSpread(pick.getSpread());
+				setPickedCorrectly(pick.getPickedCorrectly());
+			} else {
+				log.info("Pick object is null for builder...");
+			}
+
+		}
+		
+		public PickResponseBuilder() {
+			
+		}
+
+		public PickResponseBuilder setId(long id) {
+			this.id = id;
+			return this;
+		}
+
+		public PickResponseBuilder setGameDate(Date gameDate) {
+			this.gameDate = gameDate;
+			return this;
+		}
+
+		public PickResponseBuilder setGameTime(Date gameTime) {
+			this.gameTime = gameTime;
+			return this;
+		}
+
+		public PickResponseBuilder setAwayTeam(TeamResponse awayTeam) {
+			this.awayTeam = awayTeam;
+			return this;
+		}
+
+		public PickResponseBuilder setHomeTeam(TeamResponse homeTeam) {
+			this.homeTeam = homeTeam;
+			return this;
+		}
+
+		public PickResponseBuilder setAwayTeam(Team awayTeam) {
+			this.awayTeam = new TeamResponse.TeamResponseBuilder().setTeam(awayTeam).build();
+			return this;
+		}
+
+		public PickResponseBuilder setHomeTeam(Team homeTeam) {
+			this.homeTeam = new TeamResponse.TeamResponseBuilder().setTeam(homeTeam).build();
+			return this;
+		}
+
+		public PickResponseBuilder setSpread(float spread) {
+			this.spread = spread;
+			return this;
+		}
+
+		public PickResponseBuilder setFavorite(TeamResponse favorite) {
+			this.favorite = favorite;
+			return this;
+		}
+		
+		public PickResponseBuilder setFavorite(Team favorite) {
+			this.favorite = new TeamResponse.TeamResponseBuilder().setTeam(favorite).build();
+			return this;
+		}
+
+		public PickResponseBuilder setPickedCorrectly(Boolean pickedCorrectly) {
+			this.pickedCorrectly = pickedCorrectly;
+			return this;
+		}
+
+		public PickResponse build() {
+
+			return new PickResponse(this.id, this.gameDate, this.gameTime, this.awayTeam, this.homeTeam, this.spread,
+					this.favorite, this.pickedCorrectly);
+
+		}
+
+	}
+
 }

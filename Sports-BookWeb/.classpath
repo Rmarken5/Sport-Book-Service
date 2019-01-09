@@ -13,6 +13,7 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/hibernate"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Sports-BookEJB"/>
 	<classpathentry kind="lib" path="/Resources/jars/log4j-1.2.17.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Sports-BookCommon"/>
